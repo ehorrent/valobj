@@ -1,0 +1,15 @@
+error[E0423]: cannot initialize a tuple struct which contains private fields
+ --> tests/ui/tuple/tuple_ctor_test.rs:5:17
+  |
+5 |     let value = UserId(0);
+  |                 ^^^^^^
+  |
+note: constructor is not visible here due to private fields
+ --> tests/ui/tuple/tuple_ctor_test.rs:2:19
+  |
+2 | pub struct UserId(u64);
+  |                   ^^^ private field
+help: consider making the field publicly accessible
+  |
+2 | pub struct UserId(pub u64);
+  |                   +++

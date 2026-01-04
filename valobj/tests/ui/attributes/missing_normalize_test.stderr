@@ -1,0 +1,13 @@
+error[E0277]: the trait bound `UserId: Normalize<u64>` is not satisfied
+ --> tests/ui/attributes/missing_normalize_test.rs:1:1
+  |
+1 | #[valobj::value_object(Normalize)]
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ unsatisfied trait bound
+  |
+help: the trait `Normalize<u64>` is not implemented for `UserId`
+ --> tests/ui/attributes/missing_normalize_test.rs:1:1
+  |
+1 | #[valobj::value_object(Normalize)]
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  = help: see issue #48214
+  = note: this error originates in the attribute macro `valobj::value_object` (in Nightly builds, run with -Z macro-backtrace for more info)

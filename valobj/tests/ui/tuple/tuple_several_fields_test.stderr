@@ -1,0 +1,5 @@
+error: `value_object` attribute requires a tuple struct with exactly one field
+ --> tests/ui/tuple/tuple_several_fields_test.rs:2:12
+  |
+2 | pub struct UserId(u64, i32);
+  |            ^^^^^^

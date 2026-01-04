@@ -1,0 +1,19 @@
+[package]
+name = "valobj"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+name = "valobj"
+path = "src/lib.rs"
+
+
+[package.metadata]
+# no-op
+
+[dependencies]
+valobj_macros = { path = "../valobj_macros" }
+
+[dev-dependencies]
+trybuild = "1.0.116"
+
