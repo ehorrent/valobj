@@ -1,0 +1,5 @@
+error[E0616]: field `0` of struct `UserId` is private
+ --> tests/ui/tuple/tuple_private_field_test.rs:6:21
+  |
+6 |     let _ = user_id.0;
+  |                     ^ private field

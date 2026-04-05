@@ -1,0 +1,5 @@
+error: Unknown flag, expected one of: Normalize, Validate
+ --> tests/ui/attributes/unknown_attribute_test.rs:1:24
+  |
+1 | #[valobj::value_object(Validates)]
+  |                        ^^^^^^^^^
