@@ -32,7 +32,7 @@ pub fn impl_getter(ident: &syn::Ident, ty: &syn::Type) -> proc_macro2::TokenStre
                     self.0
                 }
             }
-            
+
             impl core::convert::AsRef<#ty> for #ident {
                 fn as_ref(&self) -> &#ty {
                     &self.0

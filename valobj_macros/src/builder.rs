@@ -1,11 +1,7 @@
 use crate::config::Config;
 use quote::quote;
 
-pub fn impl_builder(
-    cfg: &Config,
-    ident: &syn::Ident,
-    ty: &syn::Type,
-) -> proc_macro2::TokenStream {
+pub fn impl_builder(cfg: &Config, ident: &syn::Ident, ty: &syn::Type) -> proc_macro2::TokenStream {
     let normalize_block = if cfg.normalize {
         quote! { #ident::normalize(value); }
     } else {

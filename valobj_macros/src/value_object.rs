@@ -1,10 +1,10 @@
 use crate::builder::impl_builder;
 use crate::config::Config;
+use crate::getter::impl_getter;
 use ident_case::RenameRule;
 use proc_macro::TokenStream;
 use quote::{format_ident, quote};
 use syn::{Field, ItemStruct};
-use crate::getter::impl_getter;
 
 pub fn expand(cfg: Config, input: ItemStruct) -> TokenStream {
     if input.fields.len() != 1 {
@@ -36,7 +36,7 @@ pub fn expand(cfg: Config, input: ItemStruct) -> TokenStream {
 
     let snake_case_ident = RenameRule::SnakeCase.apply_to_variant(ident.to_string());
     let mod_ident = format_ident!("__private_mod_{}", snake_case_ident);
-    
+
     let builder_block = impl_builder(&cfg, &ident, ty);
     let getter_block = impl_getter(&ident, ty);
     let struct_block = quote! {

@@ -36,7 +36,6 @@ pub type Result<T> = std::result::Result<T, Error>;
 /// ```
 pub use valobj_macros::value_object;
 
-
 /// Trait for validating a value when a `value_object` is created.
 /// Only called if the `Validate` option is enabled in the `#[value_object]` attribute.
 /// Example usage:

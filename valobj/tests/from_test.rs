@@ -1,4 +1,4 @@
-use valobj::{value_object, Normalize};
+use valobj::{Normalize, value_object};
 
 // Test From trait with String type (no validation, with normalization)
 #[value_object(Normalize)]
@@ -99,4 +99,3 @@ fn test_from_string_empty_string_allowed() {
     let label = Label::from("".to_string());
     assert_eq!(label.as_ref(), "");
 }
-

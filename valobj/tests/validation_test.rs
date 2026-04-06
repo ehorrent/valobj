@@ -1,4 +1,4 @@
-use valobj::{value_object, Validate};
+use valobj::{Validate, value_object};
 
 // Test validation with primitive type (i32)
 #[value_object(Validate)]
@@ -91,4 +91,3 @@ fn test_validate_string_error_message_correct() {
         _ => panic!("Expected InvalidValue error with specific message"),
     }
 }
-
