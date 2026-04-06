@@ -1,4 +1,4 @@
-use valobj::{value_object, Normalize, Validate};
+use valobj::{Normalize, Validate, value_object};
 
 // Test TryFrom trait with String type
 #[value_object(Validate)]
