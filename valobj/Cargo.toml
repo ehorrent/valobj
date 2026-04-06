@@ -2,17 +2,20 @@
 name = "valobj"
 version = "0.1.0"
 edition = "2024"
+description = "A Rust library for defining value objects using procedural macros."
+repository = "https://github.com/ehorrent/valobj"
+keywords = ["valobj", "value_object", "newtype"]
+license = "MIT"
 
 [lib]
 name = "valobj"
 path = "src/lib.rs"
 
-
 [package.metadata]
 # no-op
 
 [dependencies]
-valobj_macros = { path = "../valobj_macros" }
+valobj_macros = { version = "0.1.0", path = "../valobj_macros" }
 
 [dev-dependencies]
 trybuild = "1.0.116"
