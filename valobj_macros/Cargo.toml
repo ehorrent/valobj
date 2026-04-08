@@ -1,8 +1,10 @@
 [package]
 name = "valobj_macros"
-version = "0.1.0"
+version = "0.1.1"
+description = "Macro implementation for the valobj crate - you should depend on valobj, not valobj_macros."
+documentation = "https://docs.rs/valobj"
+readme = "../README.md"
 edition = "2024"
-description = "Macro implementation for the valobj crate."
 repository = "https://github.com/ehorrent/valobj"
 keywords = ["valobj", "value_object", "newtype"]
 license = "MIT"
