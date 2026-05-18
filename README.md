@@ -2,41 +2,38 @@
 
 [![build](https://github.com/ehorrent/valobj/actions/workflows/ci-quality.yml/badge.svg)](https://github.com/ehorrent/valobj/actions/workflows/ci-quality.yml)
 
-Minimal improvements on the _newtype pattern_, which is a common way to
-create [value objects](https://martinfowler.com/bliki/ValueObject.html) to wrap
-primitive types in Rust.
+Minimal improvements on the _newtype pattern_.
 
 ## Goal
 
-Creating _value objects_ is a common practice in any language, and the newtype pattern is often used
-for this purpose in Rust. However, you sometimes need to ensure **validity** of your objects, which
-can lead to a lot of boilerplate code.
+_Value objects_ are a common design pattern across programming languages, and Rust's newtype pattern
+provides a straightforward way to implement them. However, enforcing validity constraints on these
+objects typically requires significant boilerplate code.
 
-The goal of this crate is just to minimize this boilerplate code. It tries to be as simple as
-possible, without adding complexity. It provides a simple **macro attribute** to enhance the newtype
-pattern. This macro enforces invariants and allows to normalize / validate values at construction
-time,
-ensuring that **only valid values can be created in your domain**.
+This crate aims to reduce this boilerplate by providing a lightweight **macro attribute** that
+extends the newtype pattern with validation and normalization capabilities. The macro automatically
+enforces domain invariants at construction time, enabling you to guarantee that **only valid values
+can exist within your domain**.
 
 ```rust
 use valobj::{value_object, Validate};
 
 #[value_object(Normalize, Validate)]
-pub struct ValidEmail(String);
+pub struct Email(String);
 
-impl Normalize<String> for TrimmedName {
+impl Normalize<String> for Email {
     fn normalize(value: String) -> String {
         value.trim().to_string()
     }
 }
 
-impl Validate<String> for ValidEmail {
+impl Validate<String> for Email {
     fn validate(value: &String) -> Result<(), valobj::Error> {
         if value.contains('@') && value.contains('.') {
             Ok(())
         } else {
             Err(valobj::Error::InvalidValue(
-                "ValidEmail must contain '@' and '.' characters".to_string(),
+                "Email must contain '@' and '.' characters".to_string(),
             ))
         }
     }
@@ -44,7 +41,7 @@ impl Validate<String> for ValidEmail {
 
 fn main() {
     // try_from will normalize the input value and validate it, ensuring that only valid emails can be created
-    if let Ok(email) = ValidEmail::try_from("USER@example.com".to_string()) {
+    if let Ok(email) = Email::try_from("USER@example.com".to_string()) {
         assert_eq!(email.as_ref(), "user@example.com");
     }
 }
@@ -53,10 +50,9 @@ fn main() {
 ### Primitive obsession
 
 Creating new types that wrap primitives helps you
-avoid [Primitive obsession](https://senthilnayagan.net/blog/tech/primitive-obsession/) , a code
-smell where
-primitive types like String or u64 are used directly to represent domain concepts without meaningful
-constraints or semantics.
+avoid [Primitive obsession](https://senthilnayagan.net/blog/tech/primitive-obsession/), a code smell
+where primitive types like String or u64 are used directly to represent domain concepts without
+meaningful constraints or semantics.
 
 ## When to use value objects?
 
@@ -74,7 +70,7 @@ validation is enabled or not.
 
 ### Getter
 
-To maintain consistency, the tuple is immutable and you cannot access the .0 field directly.
+To maintain consistency, the tuple is immutable and you cannot access the `.0` field directly.
 To get the inner value, a `get` method is generated, which returns a copy (or a `&str`
 in case of string) to the inner value:
 
