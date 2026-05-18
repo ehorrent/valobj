@@ -3,11 +3,13 @@ mod error;
 pub use error::Error;
 pub type Result<T> = std::result::Result<T, Error>;
 
-/// Attribute macro to define a value object struct with optional validation, normalization, and (de)serialization.
+/// Attribute macro to define a value object struct with optional validation, normalization.
 ///
 /// Configuration options:
-/// - `Normalize`: Calls a `normalize` function on the inner value before creating the value object. Requires the user to implement `Normalize<T>` for the value object.
-/// - `Validate`: Calls a `validate` function on the inner value before creating the value object. Requires the user to implement `Validate<T>` for the value object. If validation fails, the `TryFrom` implementation will return an error instead of creating the value object.
+/// - `Normalize`: Calls a `normalize` function on the inner value before creating the value object.
+///   Requires the user to implement `Normalize<T>` for the value object.
+/// - `Validate`: Calls a `validate` function on the inner value before creating the value object.
+///   Requires the user to implement `Validate<T>` for the value object. If validation fails, the `TryFrom` implementation will return an error instead of creating the value object.
 ///
 /// Example usage:
 /// ```
@@ -37,7 +39,9 @@ pub type Result<T> = std::result::Result<T, Error>;
 pub use valobj_macros::value_object;
 
 /// Trait for validating a value when a `value_object` is created.
+///
 /// Only called if the `Validate` option is enabled in the `#[value_object]` attribute.
+///
 /// Example usage:
 /// ```
 /// use valobj::{value_object, Validate};
@@ -62,7 +66,9 @@ pub trait Validate<T> {
 }
 
 /// Trait for normalizing a value when a `value_object` is created.
+///
 /// Only called if the `Normalize` option is enabled in the `#[value_object]` attribute.
+///
 /// Example usage:
 /// ```
 /// use valobj::{value_object, Normalize};
