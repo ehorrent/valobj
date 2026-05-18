@@ -49,7 +49,7 @@ pub fn expand(cfg: Config, input: ItemStruct) -> TokenStream {
             #getter_block
         }
 
-        use #mod_ident::#ident;
+        #vis use #mod_ident::#ident;
     };
 
     TokenStream::from(struct_block)
